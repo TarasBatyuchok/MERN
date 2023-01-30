@@ -13,9 +13,12 @@ const Navbar = () => {
         <AppBar className={classes.appBar} position="static">
             <div className={classes.brandContainer}>
                 <Typography  className={classes.heading} variant="h2" align="center">
-                    Memories
+
                 </Typography>
-                <img className={classes.image} src={memories} alt="icon" height="60" />
+                <Link to="/">
+                    <img className={classes.image} src={memories} alt="icon" height="60" />
+                </Link>
+                
             </div>
             <Toolbar classNAme={classes.toolbar}>
                 {user ? 
