@@ -20,7 +20,7 @@ const Navbar = () => {
                 </Link>
                 
             </div>
-            <Toolbar classNAme={classes.toolbar}>
+            <Toolbar className={classes.toolbar}>
                 {user ? 
                 (<div className={classes.profile}>
                 <Avatar className={classes.purple} 

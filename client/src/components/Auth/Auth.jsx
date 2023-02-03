@@ -1,41 +1,73 @@
 import React, { useState } from "react";
-import {
-  Avatar,
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-} from "@material-ui/core";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
-import Icon from "./icon";
+
+import { useNavigate } from "react-router-dom";
+
+import {signin, signup} from '../../redux/actions/auth'
+import { useDispatch } from 'react-redux';
+
+
+import { Avatar,Button,Paper,Grid,Typography,Container} from "@material-ui/core";
 import Input from "./input";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import useSatyles from "./styles";
 
+const initialState = {firstName:'', lastName: '', email:'', password: '', confirmPassword:''};
+
+
 const Auth = () => {
   const classes = useSatyles();
-  const [showPassword, setShowPassoword] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // local state for input show hiden password
+  const [showPassword, setShowPassword] = useState(false);
+  //state for auth
+  const [formData, setFormData] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
+
   // const state = null;
 
   const handleShowPassoword = () =>
-    setShowPassoword((prevShowPassoword) => !prevShowPassoword);
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  setShowPassword((prevShowPassoword) => !prevShowPassoword);
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(isSignup){
+      dispatch(signup(formData, navigate));
+    }else{
+      dispatch(signin(formData, navigate));
+    }
+
+    console.log(formData)
+  };
+  
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassoword(false);
+    setShowPassword(false);
   };
-  const googleSuccess = (res) => {
-    console.log(res);
-  };
-  const googleFailure = (error) => {
-    console.log(error);
-    console.log("Google Sign in was unsuccessfulю Try Again Later");
-  };
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
+  //   // const token
+
+
+  //   try{
+  //     dispatch({ type: 'AUTH', data: { result, token} })
+  //   }catch(error){
+  //       console.log(error)
+  //   }
+  // };
+  // const googleFailure = (error) => {
+  //   console.log(error);
+  //   console.log("Google Sign in was unsuccessfulю Try Again Later");
+  // };
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,8 +88,8 @@ const Auth = () => {
                   half
                 />
                 <Input
-                  name="firstName"
-                  label="First Name"
+                  name="lastName"
+                  label="Last Name"
                   handleChange={handleChange}
                   half
                 />
@@ -94,25 +126,15 @@ const Auth = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
-					<GoogleOAuthProvider clientId="GOOGLE ID">
-          <GoogleLogin
-            render={(renderProps) => (
-              <Button
-                className={classes.googleButton}
-                color="primary"
-                fullWidth
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                startIcon={<Icon />}
-                variant="contained"
-              >Google Sign In</Button>
-            )}
+					{/* <GoogleOAuthProvider clientId="96292646870-tul05mh5kn6ok2srka8l7djutp5iab72.apps.googleusercontent.com"> */}
+          {/* <GoogleLogin
+            size="large"
 						onSuccess={googleSuccess}
 						onFailure={googleFailure}
 						cookiePolicy="single_host_origin"
-          />
-					</GoogleOAuthProvider>
-          <Grid container justify="flex-end">
+          ></GoogleLogin>
+					</GoogleOAuthProvider> */}
+          <Grid container justifyContent="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
                 {isSignup
