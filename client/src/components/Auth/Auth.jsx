@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import {
-  Avatar,
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-} from "@material-ui/core";
 
+import { useNavigate } from "react-router-dom";
+
+import {signin, signup} from '../../redux/actions/auth'
 import { useDispatch } from 'react-redux';
 
+
+import { Avatar,Button,Paper,Grid,Typography,Container} from "@material-ui/core";
 import Input from "./input";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
@@ -20,21 +17,36 @@ const initialState = {firstName:'', lastName: '', email:'', password: '', confir
 
 const Auth = () => {
   const classes = useSatyles();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // local state for input show hiden password
   const [showPassword, setShowPassoword] = useState(false);
   //state for auth
   const [formData, setFormData] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
-  const dispatch = useDispatch;
+
   // const state = null;
 
   const handleShowPassoword = () =>
     setShowPassoword((prevShowPassoword) => !prevShowPassoword);
-  const handleSubmit = () => {
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(isSignup){
+      dispatch(signup(formData, navigate));
+    }else{
+      dispatch(signin(formData, navigate));
+    }
 
     console.log(formData)
   };
-  const handleChange = () => {};
+  
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     handleShowPassoword(false);
