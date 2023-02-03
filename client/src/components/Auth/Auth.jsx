@@ -7,47 +7,54 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin,  } from '@react-oauth/google';
-// import { googleLogout } from '@react-oauth/google';
+
 import { useDispatch } from 'react-redux';
-// import Icon from "./icon";
+
 import Input from "./input";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import useSatyles from "./styles";
 
+const initialState = {firstName:'', lastName: '', email:'', password: '', confirmPassword:''};
+
+
 const Auth = () => {
   const classes = useSatyles();
+  // local state for input show hiden password
   const [showPassword, setShowPassoword] = useState(false);
+  //state for auth
+  const [formData, setFormData] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch;
   // const state = null;
 
   const handleShowPassoword = () =>
     setShowPassoword((prevShowPassoword) => !prevShowPassoword);
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+
+    console.log(formData)
+  };
   const handleChange = () => {};
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     handleShowPassoword(false);
   };
-  const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
-    // const token
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
+  //   // const token
 
 
-    try{
-      dispatch({ type: 'AUTH', data: { result, token} })
-    }catch(error){
-        console.log(error)
-    }
-  };
-  const googleFailure = (error) => {
-    console.log(error);
-    console.log("Google Sign in was unsuccessfulю Try Again Later");
-  };
+  //   try{
+  //     dispatch({ type: 'AUTH', data: { result, token} })
+  //   }catch(error){
+  //       console.log(error)
+  //   }
+  // };
+  // const googleFailure = (error) => {
+  //   console.log(error);
+  //   console.log("Google Sign in was unsuccessfulю Try Again Later");
+  // };
   
 
   return (
@@ -69,8 +76,8 @@ const Auth = () => {
                   half
                 />
                 <Input
-                  name="firstName"
-                  label="First Name"
+                  name="lastName"
+                  label="Last Name"
                   handleChange={handleChange}
                   half
                 />
@@ -107,14 +114,14 @@ const Auth = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
-					<GoogleOAuthProvider clientId="96292646870-tul05mh5kn6ok2srka8l7djutp5iab72.apps.googleusercontent.com">
-          <GoogleLogin
+					{/* <GoogleOAuthProvider clientId="96292646870-tul05mh5kn6ok2srka8l7djutp5iab72.apps.googleusercontent.com"> */}
+          {/* <GoogleLogin
             size="large"
 						onSuccess={googleSuccess}
 						onFailure={googleFailure}
 						cookiePolicy="single_host_origin"
           ></GoogleLogin>
-					</GoogleOAuthProvider>
+					</GoogleOAuthProvider> */}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
