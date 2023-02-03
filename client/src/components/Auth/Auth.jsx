@@ -20,7 +20,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // local state for input show hiden password
-  const [showPassword, setShowPassoword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   //state for auth
   const [formData, setFormData] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
@@ -28,7 +28,7 @@ const Auth = () => {
   // const state = null;
 
   const handleShowPassoword = () =>
-    setShowPassoword((prevShowPassoword) => !prevShowPassoword);
+  setShowPassword((prevShowPassoword) => !prevShowPassoword);
 
 
   const handleSubmit = (e) => {
@@ -49,7 +49,7 @@ const Auth = () => {
   };
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassoword(false);
+    setShowPassword(false);
   };
   // const googleSuccess = async (res) => {
   //   const result = res?.profileObj;

@@ -1,1 +1,0 @@
-import { AUTH, LOGOUT } from "../constants/actionsTypes";
