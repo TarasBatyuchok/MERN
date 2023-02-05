@@ -35,12 +35,16 @@ const Auth = () => {
     e.preventDefault();
 
     if(isSignup){
+      // console.log({location: 'component', formData})
+      
       dispatch(signup(formData, navigate));
+      localStorage.setItem('user', JSON.stringify(formData) );
     }else{
+      console.log({location: 'component', formData})
       dispatch(signin(formData, navigate));
     }
 
-    console.log(formData)
+    
   };
   
   const handleChange = (e) => {
