@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 
-//wants to like a post
-//click the like button
+
 
 const auth = async (req, res, next) =>{
     try{
