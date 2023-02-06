@@ -20,6 +20,11 @@ const Form =({ currentId ,setCurrentId})=>{
             if(post) setPostData(post);
     }, [post]);
 
+    const clear =()=>{
+        setCurrentId(null)
+        setPostData({title:"", message:'',tags:'',selectedFile:'' });
+    }
+
     const handleSubmit =(e)=>{
         e.preventDefault();
         if(currentId){
@@ -32,10 +37,7 @@ const Form =({ currentId ,setCurrentId})=>{
     }
 
 
-    const clear =()=>{
-        setCurrentId(null)
-        setPostData({title:"", message:'',tags:'',selectedFile:'' });
-    }
+
 
     if (!user?.result?.name) {
         return (
