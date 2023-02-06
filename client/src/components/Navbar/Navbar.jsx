@@ -15,28 +15,15 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const navigation = useNavigate();
     let location = useLocation();
-    console.log(user)
     const logout = () => {
         dispatch({ type: LOGOUT });
+
 
         navigation("/auth");
 
         setUser(null);
     };
-    // console.log(user);
-    // useEffect(() => {
-    //     const token = user?.result;
-    //     console.log(token)
 
-    //     if (token) {
-    //         const decodedToken = decode(token);
-    //         console.log(decodedToken)
-
-    //         if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-    //     }
-    //     // console.log(JSON.parse(localStorage.getItem("profile")))
-    //     setUser(JSON.parse(localStorage.getItem("user")));
-    // }, [location]);
 
     useEffect(() => {
         const token = user?.token;
@@ -68,13 +55,13 @@ const Navbar = () => {
                 </Link>
             </div>
             <Toolbar className={classes.toolbar}>
-                {user ? (
+                {user?.result ? (
                     <div className={classes.profile}>
                         <Avatar
                             className={classes.purple}
                             alt={user.result.name}
                             src={user.result.imageUrl}
-                        >{user?.result.name.charAt(0)}</Avatar>
+                        >{user?.result?.name?.charAt(0)}</Avatar>
                         <Typography className={classes.userName} variant="h6">
                         {user?.result.name} 
                         </Typography>
