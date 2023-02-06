@@ -13,11 +13,14 @@ const Post =({ post, setCurrentId })=>{
     // const posts = useSelector((state) => state.posts);
     const classes = useStyles();
     const dispatch = useDispatch();
+    // const user = JSON.parse(localStorage.getItem('profile'));
+
+
     return(
         <Card className={classes.card}>
             <CardMedia className={classes.media}  image={post.selectedFile} title={post.title}/>
             <div className={classes.overlay}>
-                <Typography variant="h6">{post.creator}</Typography>
+                <Typography variant="h6">{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
