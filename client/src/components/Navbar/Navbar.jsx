@@ -76,8 +76,7 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <Button
-                        component={Link}
-                        to="/auth"
+                        onClick={logout}
                         variant="contained"
                         color="primary"
                     >
