@@ -1,5 +1,6 @@
-import * as api from '../../api/index.js';
 import { AUTH } from "../constants/actionsTypes.js";
+import * as api from '../../api/index.js';
+
 
 
 
