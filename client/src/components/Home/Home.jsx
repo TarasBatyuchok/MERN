@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getPost } from "../../redux/actions/post";
+import { getPost, getPostsBySearch } from "../../redux/actions/post";
 import Pagination from "../Pagination/Pagination";
 import ChipInput from "material-ui-chip-input";
 
@@ -24,15 +24,40 @@ function useQuery() {
 }
 
 const Home = () => {
-  const [currentId, setCurrentId] = useState(0);
   const classes = useStyles();
-
-  const dispatch = useDispatch();
   const query = useQuery();
-  const navigate = useNavigate();
   const location = useLocation();
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [currentId, setCurrentId] = useState(0);
+  const [search, setSearch] = useState('');
+  const [tags, setTags] = useState([])
+
+
+  const searchPost =(e)=>{
+    e.preventDefault();
+    if(search.trim() || tags){
+      dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+    }else{
+      navigate('/')
+    }
+  }
+
+  const handleKeyPress =(e)=>{
+    if(e.keyCode === 13){
+      searchPost();
+    }
+  }
+
+  const handleAdd = (tag) => setTags([...tags, tag]);
+
+  const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
+
+
 
   useEffect(() => {
     dispatch(getPost());
@@ -47,16 +72,16 @@ const Home = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
 		  <AppBar className={classes.appBarSearch} position="static" color="inherit">
-            <TextField name="search" variant="outlined" label="Search Memories" fullWidth value="TEST" onChange={() => {}} />
+            <TextField name="search" variant="outlined" label="Search Memories"  onKeyPress={handleKeyPress} fullWidth value={search} onChange={(e) => setSearch(e.target.value)} />
 			<ChipInput
                 style={{ margin: '10px 0' }}
-                // value={tags}
-                // onAdd={(chip) => handleAddChip(chip)}
-                // onDelete={(chip) => handleDeleteChip(chip)}
+                value={tags}
+                onAdd={handleAdd}
+                onDelete={handleDelete}
                 label="Search Tags"
                 variant="outlined"
               />
-			   <Button onClick={null} className={classes.searchButton} variant="contained" color="primary">Search</Button>
+			   <Button onClick={searchPost} className={classes.searchButton} variant="contained" color="primary">Search</Button>
           </AppBar>
 		  <br/>
 		  <Form currentId={currentId} setCurrentId={setCurrentId} />
