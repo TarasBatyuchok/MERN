@@ -10,9 +10,11 @@ export default makeStyles((theme) => ({
         justifyContent: "space-between",
         alignItems: "center",
         padding: "10px 50px",
+        color: "white",
+        backgroundColor: "white"
     },
     heading: {
-        color: "rgba(0,183,255, 1)",
+        color: "gray",
         textDecoration: "none",
     },
     image: {
@@ -36,8 +38,8 @@ export default makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
     },
-    purple: {
-        color: theme.palette.getContrastText(deepPurple[500]),
-        backgroundColor: deepPurple[500],
-    },
+    // purple: {
+    //     color: "white",
+    //     backgroundColor: "white",
+    // },
 }));

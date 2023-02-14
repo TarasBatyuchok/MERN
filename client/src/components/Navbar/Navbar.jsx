@@ -41,13 +41,13 @@ const Navbar = () => {
                     className={classes.heading}
                     variant="h2"
                     align="center"
-                ></Typography>
+                >Memory</Typography>
                 <Link to="/">
                     <img
                         className={classes.image}
                         src={memories}
                         alt="icon"
-                        height="60"
+                        height="40px"
                     />
                 </Link>
             </div>

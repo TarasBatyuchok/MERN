@@ -13,8 +13,8 @@ API.interceptors.request.use((req) => {
 
 
 // All post
-export const fetchPosts = () => API.get('/posts');
-
+// export const fetchPosts = () => API.get('/posts');
+export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 // create post
 export const createPost =(newPost) => API.post('/posts', newPost)
 
