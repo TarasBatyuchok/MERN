@@ -17,10 +17,7 @@ const Navbar = () => {
     let location = useLocation();
     const logout = () => {
         dispatch({ type: LOGOUT });
-
-
         navigation("/auth");
-
         setUser(null);
     };
 
