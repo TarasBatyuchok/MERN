@@ -59,9 +59,9 @@ const Home = () => {
 
 
 
-  useEffect(() => {
-    dispatch(getPost());
-  }, [currentId, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getPost());
+  // }, [currentId, dispatch]);
 
   return (
     <Grow in>
@@ -87,7 +87,7 @@ const Home = () => {
 		  <Form currentId={currentId} setCurrentId={setCurrentId} />
 		  <br/>
             <Paper className={classes.pagination} elevation={6}>
-              <Pagination />
+              <Pagination page={page}/>
             </Paper>
           </Grid>
         </Grid>
