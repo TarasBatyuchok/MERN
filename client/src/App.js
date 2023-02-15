@@ -2,7 +2,7 @@ import React from 'react';
 import { Container} from '@material-ui/core';
 
 
-import PostDetails from './components/PostDetails/PostDetails';
+import PostDetails from './components/PostDetails/PostDetails.js';
 import  Navbar from "./components/Navbar/Navbar.jsx"
 import Home from './components/Home/Home.jsx';
 import Auth from "./components/Auth/Auth.jsx"

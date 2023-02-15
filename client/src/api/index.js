@@ -12,20 +12,13 @@ API.interceptors.request.use((req) => {
   });
 
 
-// All post
-// export const fetchPosts = () => API.get('/posts');
+
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
-// create post
+export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const createPost =(newPost) => API.post('/posts', newPost);
-
-// create edite
 export const updatePost =(id ,updatedPost) => API.patch(`/posts/${id}`, updatedPost);
-//delete post
 export const deletePost =(id) => API.delete(`/posts/${id}`);
-// export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
 export const likePost  =(id) => API.patch(`/posts/${id}/likePost`);
-
-
 export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 
 
