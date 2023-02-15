@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { Pagination, PaginationItem } from '@material-ui/lab';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPost } from '../../redux/actions/post';
+import { getPosts } from '../../redux/actions/post';
 
 // import { getPosts } from '../actions/posts';
 import useStyles from './styles';
@@ -14,7 +14,7 @@ const Paginate = ({page}) => {
   const classes = useStyles();
   useEffect(() => {
     if (page) {
-      dispatch(getPost(page));
+      dispatch(getPosts(page));
     }
   }, [dispatch, page]);
   return (

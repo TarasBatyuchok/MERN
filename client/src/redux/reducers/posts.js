@@ -1,4 +1,4 @@
-import { END_LOADING,START_LOADING,FETCH_BY_SEARCH,FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from "../constants/actionsTypes";
+import {FETCH_POST, END_LOADING,START_LOADING,FETCH_BY_SEARCH,FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from "../constants/actionsTypes";
 // END_LOADING,START_LOADING
 export default (state = { isLoading: true,  posts: [] }, action) => {
     switch (action.type) {
@@ -6,13 +6,15 @@ export default (state = { isLoading: true,  posts: [] }, action) => {
             return { ...state, isLoading: true };
       case END_LOADING:
             return { ...state, isLoading: false };
-       case FETCH_ALL:
+      case FETCH_ALL:
             return {
               ...state,
               posts: action.payload.data,
               currentPage: action.payload.currentPage,
               numberOfPages: action.payload.numberOfPages,
             };
+      case FETCH_POST:
+            return { ...state, post: action.payload };
       case FETCH_BY_SEARCH:
             return { ...state, posts: action.payload };
       case LIKE:
