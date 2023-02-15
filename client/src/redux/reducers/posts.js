@@ -1,10 +1,10 @@
 import { END_LOADING,START_LOADING,FETCH_BY_SEARCH,FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from "../constants/actionsTypes";
-
-export default (state = { isLoading: true, posts: [] }, action) => {
+// END_LOADING,START_LOADING
+export default (state = { isLoading: true,  posts: [] }, action) => {
     switch (action.type) {
-        case START_LOADING:
+      case START_LOADING:
             return { ...state, isLoading: true };
-        case END_LOADING:
+      case END_LOADING:
             return { ...state, isLoading: false };
        case FETCH_ALL:
             return {

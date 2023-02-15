@@ -59,9 +59,9 @@ const Home = () => {
 
 
 
-  useEffect(() => {
-    dispatch(getPost());
-  }, [currentId, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getPost());
+  // }, [currentId, dispatch]);
 
   return (
     <Grow in>
@@ -94,14 +94,10 @@ const Home = () => {
 		  <Form currentId={currentId} setCurrentId={setCurrentId} />
 		  <br/>
 
-            {/* <Paper className={classes.pagination} elevation={6}>
+            <Paper className={classes.pagination} elevation={6}>
               <Pagination page={page}/>
-            </Paper> */}
-            {(!searchQuery && !tags.length) && (
-              <Paper className={classes.pagination} elevation={6}>
-                <Pagination page={page} />
-              </Paper>
-            )}
+            </Paper>
+
           </Grid>
         </Grid>
       </Container>

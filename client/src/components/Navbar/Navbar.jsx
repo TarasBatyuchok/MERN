@@ -47,7 +47,7 @@ const Navbar = () => {
                         className={classes.image}
                         src={memories}
                         alt="icon"
-                        height="40px"
+                        height="45px"
                     />
                 </Link>
             </div>
