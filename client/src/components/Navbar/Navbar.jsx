@@ -17,10 +17,7 @@ const Navbar = () => {
     let location = useLocation();
     const logout = () => {
         dispatch({ type: LOGOUT });
-
-
         navigation("/auth");
-
         setUser(null);
     };
 
@@ -44,13 +41,13 @@ const Navbar = () => {
                     className={classes.heading}
                     variant="h2"
                     align="center"
-                ></Typography>
+                >Memory</Typography>
                 <Link to="/">
                     <img
                         className={classes.image}
                         src={memories}
                         alt="icon"
-                        height="60"
+                        height="45px"
                     />
                 </Link>
             </div>

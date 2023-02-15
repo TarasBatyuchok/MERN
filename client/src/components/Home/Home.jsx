@@ -26,7 +26,7 @@ function useQuery() {
 const Home = () => {
   const classes = useStyles();
   const query = useQuery();
-  const location = useLocation();
+  // const location = useLocation();
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
   const dispatch = useDispatch();
@@ -72,7 +72,14 @@ const Home = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
 		  <AppBar className={classes.appBarSearch} position="static" color="inherit">
-            <TextField name="search" variant="outlined" label="Search Memories"  onKeyPress={handleKeyPress} fullWidth value={search} onChange={(e) => setSearch(e.target.value)} />
+            <TextField 
+            name="search" 
+            variant="outlined" 
+            label="Search Memories" 
+             onKeyPress={handleKeyPress} 
+             fullWidth 
+             value={search} 
+             onChange={(e) => setSearch(e.target.value)} />
 			<ChipInput
                 style={{ margin: '10px 0' }}
                 value={tags}
@@ -86,9 +93,11 @@ const Home = () => {
 		  <br/>
 		  <Form currentId={currentId} setCurrentId={setCurrentId} />
 		  <br/>
+
             <Paper className={classes.pagination} elevation={6}>
               <Pagination page={page}/>
             </Paper>
+
           </Grid>
         </Grid>
       </Container>
