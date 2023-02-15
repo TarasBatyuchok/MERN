@@ -26,7 +26,7 @@ function useQuery() {
 const Home = () => {
   const classes = useStyles();
   const query = useQuery();
-  const location = useLocation();
+  // const location = useLocation();
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
   const dispatch = useDispatch();
@@ -93,9 +93,15 @@ const Home = () => {
 		  <br/>
 		  <Form currentId={currentId} setCurrentId={setCurrentId} />
 		  <br/>
-            <Paper className={classes.pagination} elevation={6}>
+
+            {/* <Paper className={classes.pagination} elevation={6}>
               <Pagination page={page}/>
-            </Paper>
+            </Paper> */}
+            {(!searchQuery && !tags.length) && (
+              <Paper className={classes.pagination} elevation={6}>
+                <Pagination page={page} />
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>
