@@ -14,13 +14,16 @@ import {
   CardMedia,
   Button,
   Typography,
+  ButtonBase,
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  const navigate =useNavigate();
 
   //  1 like, 2 likes
 
@@ -50,8 +53,21 @@ const Post = ({ post, setCurrentId }) => {
     );
   };
 
+
+  const openPost = (e) => {
+    // dispatch(getPost(post._id, history));
+
+    navigate(`/posts/${post._id}`);
+  };
+
   return (
     <Card className={classes.card} raised="true" elevation={6}>
+      <ButtonBase
+        component="span"
+        name="test"
+        className={classes.cardAction}
+        onClick={openPost}
+      >
       <CardMedia
         className={classes.media}
         image={post.selectedFile}
@@ -64,7 +80,7 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        {user?.result?._id === post?.creator && (
+        {(user?.result?._id === post?.creator || user?.result?._id === post?.creator) && (
           <Button
             style={{ color: "white" }}
             size="small"
@@ -92,6 +108,7 @@ const Post = ({ post, setCurrentId }) => {
           {post.message}
         </Typography>
       </CardContent>
+      </ButtonBase>
       <CardActions className={classes.cardActions}>
         <Button
           size="small"

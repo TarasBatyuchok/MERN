@@ -6,6 +6,7 @@ export const DELETE = "DELETE";
 export const LIKE ="LIKE";
 export const AUTH = "AUTH";
 export const LOGOUT ="LOGOUT";
+export const FETCH_POST = "FETCH_POST";
 
 
 export const END_LOADING = 'END_LOADING';
