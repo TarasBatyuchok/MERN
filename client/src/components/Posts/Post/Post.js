@@ -1,6 +1,7 @@
 import React from "react";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useNavigate } from "react-router-dom";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
@@ -14,16 +15,16 @@ import {
   CardMedia,
   Button,
   Typography,
-  ButtonBase,
+  ButtonBase
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import { useNavigate } from "react-router-dom";
+
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const navigate =useNavigate();
+  const navigate = useNavigate();
 
   //  1 like, 2 likes
 
@@ -63,8 +64,6 @@ const Post = ({ post, setCurrentId }) => {
   return (
     <Card className={classes.card} raised="true" elevation={6}>
       <ButtonBase
-        component="span"
-        name="test"
         className={classes.cardAction}
         onClick={openPost}
       >

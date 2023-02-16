@@ -1,3 +1,4 @@
+
 import { FETCH_POST,END_LOADING,START_LOADING,FETCH_BY_SEARCH,FETCH_ALL,CREATE,UPDATE,DELETE,LIKE } from "../constants/actionsTypes";
 // END_LOADING,START_LOADING
 export default (state = { isLoading: true,  posts: [] }, action) => {
@@ -29,4 +30,3 @@ export default (state = { isLoading: true,  posts: [] }, action) => {
         return state;
     }
   };
-
