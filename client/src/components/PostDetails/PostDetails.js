@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import  { useParams, useNavigate } from "react-router-dom"
 import { Paper, Typography, CircularProgress, Divider } from  '@material-ui/core';
+import CommentSection from './CommentSection';
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment';
 
@@ -59,7 +60,7 @@ const PostDetails = () =>{
             <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
             <Divider style={{ margin: '20px 0' }} />
             <Typography variant="body1"><strong>Comment - coming soon!</strong></Typography>
-            {/* <CommentSection post={post} /> */}
+            <CommentSection post={post} />
             <Divider style={{ margin: '20px 0' }} />
           </div>
           <div className={classes.imageSection}>
