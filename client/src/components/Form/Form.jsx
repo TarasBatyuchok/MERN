@@ -1,6 +1,7 @@
 import React, {useState , useEffect} from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import  FileBase  from "react-file-base64";
+import  { useNavigate } from "react-router-dom"
 
 import useStyles from './styles.js';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,9 +10,10 @@ import { createPost, updatePost } from "../../redux/actions/post.js";
 
 
 const Form =({ currentId ,setCurrentId})=>{
+    const navigate = useNavigate();
     const [postData, setPostData] = useState({ title:"", message:'',tags:'',selectedFile:'' });
 
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null);
     const dispatch = useDispatch();
     const classes = useStyles();
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -25,10 +27,11 @@ const Form =({ currentId ,setCurrentId})=>{
         setPostData({title:"", message:'',tags:'',selectedFile:'' });
     }
 
-    const handleSubmit =(e)=>{
-        e.preventDefault();
+    const handleSubmit =()=>{
+
         if(currentId){
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name },  navigate));
+           
             clear();
         } else{
             dispatch(createPost({ ...postData, name: user?.result?.name }));
@@ -51,7 +54,7 @@ const Form =({ currentId ,setCurrentId})=>{
     }
     
     return(
-        <Paper className={classes.paper}  raised="true" elevation={6}>
+        <Paper className={classes.paper}  elevation={6}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{ currentId ? 'Editing' : "Creating"} a Memory</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=> setPostData({ ...postData, title: e.target.value})}/>
