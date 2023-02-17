@@ -11,8 +11,9 @@ const CommentSection = ({ post }) => {
   const [comments, setComments] = useState(post?.comments);
   const user = JSON.parse(localStorage.getItem('profile'));
   const dispatch = useDispatch();
+  console.log(comments)
 
-  console.log(user)
+  // console.log(user)
   const commentsRef = useRef();
 
   const handleClick = async () => {
@@ -30,8 +31,8 @@ const CommentSection = ({ post }) => {
   return (
     <div>
       <div className={classes.commentsOuterContainer}>
-      {/* <Typography gutterBottom variant="h6">Comments</Typography> */}
         <div className={classes.commentsInnerContainer}>
+        <Typography gutterBottom variant="h6">Comments</Typography>
           {comments?.map((c, i) => (
             <Typography key={i} gutterBottom variant="subtitle1">
               <strong>{c.split(': ')[0]}</strong>
@@ -41,8 +42,8 @@ const CommentSection = ({ post }) => {
           <div ref={commentsRef} />
         </div>
         {user?.result?.name && (
-        <div style={{ width: '80%' }}>
-          <Typography gutterBottom  variant="h6">Write a comment</Typography>
+        <div style={{ width: '60%' }}>
+          <Typography gutterBottom variant="h6">Write a comment</Typography>
           <TextField fullWidth minRows={4} variant="outlined" label="Comment" multiline value={comment} onChange={(e) => setComment(e.target.value)} />
           <br />
           <Button style={{ marginTop: '10px' }} fullWidth disabled={!comment} color="primary" variant="contained" onClick={handleClick}>

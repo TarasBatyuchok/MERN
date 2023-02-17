@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
@@ -24,33 +24,64 @@ const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
   const navigate =useNavigate();
+  const [likes , setLikes] = useState(post?.likes);
+
+
+  const userId = user?.result?._id;
+  const hasLikedPost = post.likes.find((like) => like === userId);
+
+  const handleLike = async () => {
+    dispatch(likePost(post._id));
+    console.log(likes)
+
+    if (hasLikedPost) {
+      setLikes(post.likes.filter((id) => id !== userId));
+    } else {
+      console.log(...post?.likes, userId)
+      setLikes([...post?.likes, userId]);
+    }
+  };
 
   //  1 like, 2 likes
 
-  const Likes = () => {
-    if (post.likes.length > 0) {
-      return post.likes.find((like) => like === user?.result?._id) ? (
-        <>
-          <ThumbUpAltIcon fontSize="small" />
-          &nbsp;
-          {post.likes.length > 2
-            ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
-        </>
-      ) : (
-        <>
-          <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
-        </>
-      );
+  // const Likes = () => {
+  //   if (likes.length > 0) {
+  //     return likes.find((like) => like === userId) ? (
+  //       <>
+  //         <ThumbUpAltIcon fontSize="small" />
+  //         &nbsp;
+  //         {likes.length > 2
+  //           ? `You and ${likes.length - 1} others`
+  //           : `${likes.length} like${likes.length > 1 ? "s" : ""}`}
+  //       </>
+  //     ) : (
+  //       <>
+  //         <ThumbUpAltOutlined fontSize="small" />
+  //         &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
+  //       </>
+  //     );
+  //   }
+
+  //   return (
+  //     <>
+  //       <ThumbUpAltOutlined fontSize="small" />
+  //       &nbsp;Like
+  //     </>
+  //   );
+  // };
+
+
+    const Likes = () => {
+    if (likes.length > 0) {
+      return likes.find((like) => like === userId)
+        ? (
+          <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}` }</>
+        ) : (
+          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
+        );
     }
 
-    return (
-      <>
-        <ThumbUpAltOutlined fontSize="small" />
-        &nbsp;Like
-      </>
-    );
+    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
 
 
@@ -61,7 +92,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   return (
-    <Card className={classes.card} raised="true" elevation={6}>
+    <Card className={classes.card}  elevation={6}>
       <ButtonBase
         component="span"
         name="test"
@@ -72,6 +103,8 @@ const Post = ({ post, setCurrentId }) => {
         className={classes.media}
         image={post.selectedFile}
         title={post.title}
+        component='div'
+        
       />
       <div className={classes.overlay}>
         <Typography variant="h6">{post.name}</Typography>
@@ -114,7 +147,8 @@ const Post = ({ post, setCurrentId }) => {
           size="small"
           color="primary"
           disabled={!user?.result}
-          onClick={() => dispatch(likePost(post._id))}
+          // onClick={() => dispatch(likePost(post._id))}
+          onClick={handleLike}
         >
           <Likes />
         </Button>
@@ -122,6 +156,7 @@ const Post = ({ post, setCurrentId }) => {
           <Button
             size="small"
             color="primary"
+            disabled={!user?.result}
             onClick={() => dispatch(deletePost(post._id))}
           >
             <DeleteIcon fontSize="small" />
