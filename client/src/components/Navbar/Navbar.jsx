@@ -14,11 +14,15 @@ const Navbar = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
     const dispatch = useDispatch();
-    const navigation = useNavigate();
+    const navigate = useNavigate();
     let location = useLocation();
     const logout = () => {
         dispatch({ type: LOGOUT });
-        navigation('/auth');
+        if(user?.result){
+            navigate('/')
+        }else{
+            navigate('/auth')
+        }
         setUser(null);
     };
 
