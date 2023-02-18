@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { AppBar, Typography, Toolbar, Button, Avatar } from "@material-ui/core";
 
+
 import { useDispatch } from "react-redux";
 import useStyles from "./style";
 import decode from 'jwt-decode';
 import { LOGOUT } from '../../redux/constants/actionsTypes';
-import memories from "../../images/memoriesLogo.png";
+import memories from "../../images/git.gif";
 
 const Navbar = () => {
     const classes = useStyles();
@@ -17,7 +18,7 @@ const Navbar = () => {
     let location = useLocation();
     const logout = () => {
         dispatch({ type: LOGOUT });
-        navigation("/auth");
+        navigation('/auth');
         setUser(null);
     };
 
@@ -41,7 +42,7 @@ const Navbar = () => {
                     className={classes.heading}
                     variant="h2"
                     align="center"
-                >Memory</Typography>
+                >Welcome</Typography>
                 <Link to="/">
                     <img
                         className={classes.image}

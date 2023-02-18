@@ -16,11 +16,15 @@ export default makeStyles((theme) => ({
         marginBottom: '1rem',
         display: 'flex',
         padding: "16px",
+        backgroundColor: "rgba( 255, 255, 255, 0.6 )",
+        backdropFilter: "blur( 10px )"
       },
       pagination: {
         borderRadius: 4,
         marginTop: '1rem',
         padding: '16px',
+        backgroundColor: "rgba( 255, 255, 255, 0.6 )",
+        backdropFilter: "blur( 10px )"
       },
       gridContainer: {
         [theme.breakpoints.down('xs')]: {

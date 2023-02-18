@@ -20,6 +20,8 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    backgroundColor: "rgba( 255, 255, 255, 0.6 )",
+    backdropFilter: "blur( 10px )"
   },
   overlay: {
     position: 'absolute',
@@ -43,6 +45,7 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px',
+
   },
   cardActions: {
     padding: '0 16px 8px 16px',

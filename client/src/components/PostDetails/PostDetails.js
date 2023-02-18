@@ -47,7 +47,7 @@ const PostDetails = () =>{
 
     // console.log("POST DETAILS");
     return(
-        <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
+        <Paper className={classes.paper} style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
         <div className={classes.card}>
           <div className={classes.section}>
             <Typography variant="h3" component="h2">{post.title}</Typography>
@@ -56,9 +56,8 @@ const PostDetails = () =>{
             <Typography variant="h6">Created by: {post.name}</Typography>
             <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
             <Divider style={{ margin: '20px 0' }} />
-            <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
-            <Divider style={{ margin: '20px 0' }} />
-            {/* <Typography variant="body1"><strong>Comment - coming soon!</strong></Typography> */}
+
+            {/* <Divider style={{ margin: '20px 0' }} /> */}
             <CommentSection post={post} />
             <Divider style={{ margin: '20px 0' }} />
           </div>
