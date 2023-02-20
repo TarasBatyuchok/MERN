@@ -35,7 +35,9 @@ export default makeStyles((theme) => ({
   brandContainer: {
     display: 'flex',
     alignItems: 'center',
+
   },
+
   smMargin: {
     margin: theme.spacing(1),
   },
