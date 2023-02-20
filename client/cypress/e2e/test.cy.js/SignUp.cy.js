@@ -28,6 +28,6 @@ describe('OpenApp', () => {
         cy.get('input[name="email"]').type('Cypress@gmail.com');
         cy.get('input[name="password"]').type('helloCypress');
         cy.get('.MuiIconButton-label').click();
-        cy.get('button[type="submit"]').contains("Sign In").click()
+        cy.get('button[type="submit"]').contains("Sign In").click();
     })
   })
