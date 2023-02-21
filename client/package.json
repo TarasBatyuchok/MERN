@@ -29,11 +29,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "cy:run:chrome": "cypress run --browser chrome",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
